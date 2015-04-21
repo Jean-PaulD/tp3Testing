@@ -6,6 +6,7 @@
 
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -20,6 +21,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
  *
  * @author 211064084
  */
+//https://github.com/boniface/course
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(class = App.class)//App is class name
 @WebAppConfiguration
@@ -34,6 +36,15 @@ public class NewJUnitTest {
     respository.save(lect);
     }
     
+    @Test
+    public void testUpdate(){
+        Lecturer lect = new Lecturer.Builder("Lect 1");
+        Lecturer newLect = new Lecturer.Builder(lect.getName());\
+        Assert.assertEquals("Lect 1", lect.getName());
+        Assert.assertEquals(27, newLect.getAge());
+        Assert.assertEquals(23, lect.getAge());
+        Assert.assertEquals(new Long(2), lect.getAge());
+    }
     public NewJUnitTest() {
     }
     
